@@ -5,7 +5,7 @@
 <div class="row justify-content-center">
     <div class="col-lg-4">
         <main class="form-registration">
-          <h1 class="h3 mb-3 fw-normal">Form Registrasi</h1>
+          <h1 class=" row justify-content-center h3 mb-3 fw-normal">Form Registrasi</h1>
           
           <form action="/register" method="POST">
             @csrf
@@ -45,7 +45,7 @@
                     </div>
                 @enderror
           </div>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+          <button class="w-100 btn btn-lg btn-primary bg-danger" type="submit">Register</button>
           </form>
           <small class="d-block text-center mt-3">Sudah Register?<a href="/login">Login</a></small>
         </main>

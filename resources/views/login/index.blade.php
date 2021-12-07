@@ -19,7 +19,7 @@
       @endif
         
       <main class="form-signin">
-          <h1 class="h3 mb-3 fw-normal">Form login</h1>
+          <h1 class="row justify-content-center h3 mb-3 fw-normal">Form Login</h1>
           
           <form action="/login" method="POST">
             @csrf
@@ -37,7 +37,7 @@
             <input type="password" name="password" class="form-control" id="password" placeholder="Password">
             <label for="password">Password</label>
           </div>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+          <button class="w-100 btn btn-lg btn-primary bg-warning" type="submit">Login</button>
           </form>
           <small class="d-block text-center mt-3">Belum Register?<a href="/register"> Register Sekarang!!!</a></small>
         </main>
