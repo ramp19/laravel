@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Str;
+
 
 class DashboardBeritaController extends Controller
 {
@@ -14,7 +18,9 @@ class DashboardBeritaController extends Controller
      */
     public function index()
     {
-        return view('dashboard.berita.index');
+        return view('dashboard.berita.index',[
+            'berita'=> Berita::all()
+        ]);
     }
 
     /**
@@ -24,7 +30,9 @@ class DashboardBeritaController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.berita.create', [
+            'categories'=> Category::all()
+        ]);
     }
 
     /**
@@ -35,7 +43,17 @@ class DashboardBeritaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'judul_berita'=>'required|max:255',
+            'slug'=>'required',
+            'category_id'=>'required',
+            'isi_berita'=>'required'
+            ]);
+        $validateData['excerpt'] = Str::limit(strip_tags($request->isi_berita). 100);
+
+        Berita::create($validateData);
+
+        return redirect('/dashboard/berita')->with('sukses', 'Berita Baru Berhasil Ditambahkan');
     }
 
     /**
@@ -44,9 +62,11 @@ class DashboardBeritaController extends Controller
      * @param  \App\Models\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function show(Berita $berita)
+    public function show(Berita $beritum)
     {
-        //
+        return view('dashboard.berita.show',[
+            'berita'=> $beritum
+        ]);
     }
 
     /**
@@ -81,5 +101,10 @@ class DashboardBeritaController extends Controller
     public function destroy(Berita $berita)
     {
         //
+    }
+        public function checkSlug(Request $request){
+            $slug = SlugService::createSlug(Berita::class, 'slug', $request->judul_berita);
+        
+            return response()->json(['slug'=>$slug]);
     }
 }

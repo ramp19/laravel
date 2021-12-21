@@ -50,4 +50,7 @@ Route::get('/register',[RegisterController::class, 'index'])->middleware('guest'
 Route::post('/register',[RegisterController::class, 'store']);
 
 Route::get('/dashboard',[DashboardController::class, 'index'])->middleware('auth');
+
+Route::get('/dashboard/berita/checkSlug', [DashboardBeritaController::class, 'checkSlug'])->middleware('auth');
+
 Route::resource('/dashboard/berita', DashboardBeritaController::class)->middleware('auth');

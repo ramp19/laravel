@@ -7,7 +7,9 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
   <!-- DataTables -->
+  <link rel="stylesheet" href="/../../plugins/summernote/summernote-bs4.min.css"
   <link rel="stylesheet" href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+
   <link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- overlayScrollbars -->
@@ -64,7 +66,10 @@
 <!-- ChartJS -->
 <script src="/plugins/chart.js/Chart.min.js"></script>
 
+
+
 <!-- DataTables  & Plugins -->
+<script src="../../plugins/summernote/summernote-bs4.min.js"></script>
 <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -82,6 +87,11 @@
 <script src="/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/dist/js/pages/dashboard2.js"></script>
+<script>
+  $(function (){
+    $('#summernote').summernote()
+  })
+</script>
 
 <script>
     $(function () {
