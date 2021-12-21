@@ -32,8 +32,12 @@
               <td>{{ $berita->category->nama }}</td>
               <td>
                 <a href="/dashboard/berita/{{ $berita->slug }}" class="btn btn-info"><i class="far fa-eye nav-icon"></i></a>
-                <a href="" class="btn btn-warning"><i class="far fa-edit nav-icon"></i></a>
-                <a href="" class="btn btn-danger"><i class="nav-icon fas  fa-trash-alt"></i></a>
+                <a href="/dashboard/berita/{{ $berita->slug }}/edit" class="btn btn-warning"><i class="far fa-edit nav-icon"></i></a>
+                <form action="/dashboard/berita/{{ $berita->slug }}" method="POST" class="d-inline">
+                @method('delete')
+                @csrf 
+                <button class="btn btn-danger" onclick="return confirm('Kamu Yakin Mau Menghapus Data Ini ?')"><i class="nav-icon fas fa-trash-alt"></i></button>
+                </form>
               </td>
             </tr>
             @endforeach

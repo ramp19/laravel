@@ -75,9 +75,12 @@ class DashboardBeritaController extends Controller
      * @param  \App\Models\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function edit(Berita $berita)
+    public function edit(Berita $beritum)
     {
-        //
+        return view('dashboard.berita.edit', [
+            'berita'=> $beritum,
+            'categories'=> Category::all()
+        ]);
     }
 
     /**
@@ -87,9 +90,25 @@ class DashboardBeritaController extends Controller
      * @param  \App\Models\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Berita $berita)
+    public function update(Request $request, Berita $beritum)
     {
-        //
+        $rules = [
+            'judul_berita'=>'required|max:255',
+            'category_id'=>'required',
+            'isi_berita'=>'required'
+        ];
+        
+        if($request->slug != $beritum->slug){
+            $rules['slug']='required|unique:beritas';
+        }
+        $validateData = $request->validate($rules);
+        
+        $validateData['excerpt'] = Str::limit(strip_tags($request->isi_berita). 100);
+
+        Berita::where('id', $beritum->id)
+                ->update($validateData);
+
+        return redirect('/dashboard/berita')->with('sukses', 'Berita Baru Berhasil Ditambahkan');
     }
 
     /**
@@ -98,9 +117,11 @@ class DashboardBeritaController extends Controller
      * @param  \App\Models\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Berita $berita)
+    public function destroy(Berita $beritum)
     {
-        //
+        Berita::destroy($beritum->id);
+
+        return redirect('/dashboard/berita')->with('sukses','Data Berita Berhasil Dihapus');
     }
         public function checkSlug(Request $request){
             $slug = SlugService::createSlug(Berita::class, 'slug', $request->judul_berita);

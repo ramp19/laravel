@@ -7,7 +7,7 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="/../../plugins/summernote/summernote-bs4.min.css"
+  <link rel="stylesheet" href="/../../plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 
   <link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -87,6 +87,7 @@
 <script src="/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/dist/js/pages/dashboard2.js"></script>
+
 <script>
   $(function (){
     $('#summernote').summernote()
